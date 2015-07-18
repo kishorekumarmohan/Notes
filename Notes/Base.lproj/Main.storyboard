@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sTP-tx-VwO">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Notes View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="KKMNotesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aWK-z5-gN5">
+                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="uEt-fL-Iwg">
+                                <rect key="frame" x="16" y="72" width="568" height="29"/>
+                                <segments>
+                                    <segment title="Preview 1 line"/>
+                                    <segment title="2 lines"/>
+                                    <segment title="4 lines"/>
+                                </segments>
+                                <color key="tintColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aWK-z5-gN5" firstAttribute="top" secondItem="uEt-fL-Iwg" secondAttribute="bottom" constant="8" id="5zc-WL-fMq"/>
+                            <constraint firstItem="aWK-z5-gN5" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="DQY-qf-QJH"/>
+                            <constraint firstItem="aWK-z5-gN5" firstAttribute="top" secondItem="uEt-fL-Iwg" secondAttribute="bottom" constant="8" id="Gbs-Pc-6W3"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="aWK-z5-gN5" secondAttribute="bottom" id="Oqo-w1-pJF"/>
+                            <constraint firstItem="uEt-fL-Iwg" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="TN8-3G-uak"/>
+                            <constraint firstItem="uEt-fL-Iwg" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="eD4-rR-NUE"/>
+                            <constraint firstItem="uEt-fL-Iwg" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="eM3-YJ-Pq8"/>
+                            <constraint firstItem="aWK-z5-gN5" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" constant="16" id="hz4-EL-kJl"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="RjK-8i-8Ub">
+                        <barButtonItem key="leftBarButtonItem" image="ic_cloud" id="tHc-ak-QN4"/>
+                        <barButtonItem key="rightBarButtonItem" title="New" id="6hT-P1-eoi">
+                            <connections>
+                                <segue destination="UJg-er-lGd" kind="show" id="rgA-5X-uen"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="previewSegmentControl" destination="uEt-fL-Iwg" id="6rk-sD-MZH"/>
+                        <outlet property="tableView" destination="aWK-z5-gN5" id="TSD-nK-6Wm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1107" y="699"/>
+        </scene>
+        <!--Edit Notes View Controller-->
+        <scene sceneID="ZOb-Cz-YjU">
+            <objects>
+                <viewController id="UJg-er-lGd" customClass="KKMEditNotesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="X3P-H5-lgQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="gZj-xR-TIz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="udv-vb-kHr">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0FT-zF-rgK">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Material icons also work well within iOS apps. In both the material icons library and git repository, these icons are packaged up in Xcode imagesets which will work easily with Xcode Asset Catalogs (xcassets). These imagesets can be added to any Xcode Asset Catalogs by dragging them into Xcode on to the asset catalog or by copying the folder into the xcasset folder</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="light" returnKeyType="done"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="0FT-zF-rgK" secondAttribute="trailing" constant="-16" id="Sql-UG-WwF"/>
+                            <constraint firstItem="gZj-xR-TIz" firstAttribute="top" secondItem="0FT-zF-rgK" secondAttribute="bottom" id="plF-U1-qLU"/>
+                            <constraint firstItem="0FT-zF-rgK" firstAttribute="top" secondItem="udv-vb-kHr" secondAttribute="topMargin" id="vI9-VB-dZi"/>
+                            <constraint firstItem="0FT-zF-rgK" firstAttribute="leading" secondItem="udv-vb-kHr" secondAttribute="leadingMargin" constant="-16" id="wgw-0W-MMn"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fnu-i7-3K7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1772" y="698"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="rX2-Ob-3I9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sTP-tx-VwO" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ve3-Rt-W7H">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="hdV-5t-KOn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wQ7-dh-znH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="406" y="699"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_cloud" width="24" height="24"/>
+    </resources>
+</document>
