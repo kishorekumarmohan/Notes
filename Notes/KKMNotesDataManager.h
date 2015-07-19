@@ -20,4 +20,6 @@ typedef void (^KKMNoteHandler)(KKMNote *note);
 
 - (void)upsertNote:(KKMNote *)note;
 
+- (void)deleteNote:(KKMNote *)note;
+
 @end

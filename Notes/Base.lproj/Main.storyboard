@@ -5,10 +5,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Notes View Controller-->
+        <!--Notes-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="KKMNotesViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="KKMNotesViewController" automaticallyAdjustsScrollViewInsets="NO" id="vXZ-lx-hvc" customClass="KKMNotesViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -17,9 +17,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aWK-z5-gN5">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aWK-z5-gN5">
                                 <rect key="frame" x="0.0" y="108" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NOTE_CELL" id="RTs-05-0EV">
+                                        <rect key="frame" x="0.0" y="22" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RTs-05-0EV" id="D6j-Qa-096">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="lbs-Jm-qgk"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="hzF-hy-FXh"/>
+                                </connections>
                             </tableView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="uEt-fL-Iwg">
                                 <rect key="frame" x="16" y="72" width="568" height="29"/>
@@ -43,7 +59,7 @@
                             <constraint firstItem="aWK-z5-gN5" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" constant="16" id="hz4-EL-kJl"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="RjK-8i-8Ub">
+                    <navigationItem key="navigationItem" title="Notes" id="RjK-8i-8Ub">
                         <barButtonItem key="leftBarButtonItem" image="ic_cloud" id="tHc-ak-QN4"/>
                         <barButtonItem key="rightBarButtonItem" title="New" id="6hT-P1-eoi">
                             <connections>
@@ -53,7 +69,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="previewSegmentControl" destination="uEt-fL-Iwg" id="6rk-sD-MZH"/>
-                        <outlet property="tableView" destination="aWK-z5-gN5" id="TSD-nK-6Wm"/>
+                        <outlet property="tableView" destination="aWK-z5-gN5" id="97e-ph-WRa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -63,7 +79,7 @@
         <!--Edit Notes View Controller-->
         <scene sceneID="ZOb-Cz-YjU">
             <objects>
-                <viewController id="UJg-er-lGd" customClass="KKMEditNotesViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="KKMEditNotesViewController" id="UJg-er-lGd" customClass="KKMEditNotesViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="X3P-H5-lgQ"/>
                         <viewControllerLayoutGuide type="bottom" id="gZj-xR-TIz"/>
@@ -72,31 +88,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0FT-zF-rgK">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <attributedString key="attributedText">
-                                    <fragment>
-                                        <string key="content">Material icons also work well within iOS apps. In both the material icons library and git repository, these icons are packaged up in Xcode imagesets which will work easily with Xcode Asset Catalogs (xcassets). These imagesets can be added to any Xcode Asset Catalogs by dragging them into Xcode on to the asset catalog or by copying the folder into the xcasset folder</string>
-                                        <attributes>
-                                            <color key="NSColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="16" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="light" returnKeyType="done"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0FT-zF-rgK">
+                                <rect key="frame" x="8" y="0.0" width="584" height="600"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="light"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="0FT-zF-rgK" secondAttribute="trailing" constant="-16" id="Sql-UG-WwF"/>
-                            <constraint firstItem="gZj-xR-TIz" firstAttribute="top" secondItem="0FT-zF-rgK" secondAttribute="bottom" id="plF-U1-qLU"/>
-                            <constraint firstItem="0FT-zF-rgK" firstAttribute="top" secondItem="udv-vb-kHr" secondAttribute="topMargin" id="vI9-VB-dZi"/>
-                            <constraint firstItem="0FT-zF-rgK" firstAttribute="leading" secondItem="udv-vb-kHr" secondAttribute="leadingMargin" constant="-16" id="wgw-0W-MMn"/>
+                            <constraint firstItem="0FT-zF-rgK" firstAttribute="leading" secondItem="udv-vb-kHr" secondAttribute="leadingMargin" constant="-8" id="5B8-js-3wz"/>
+                            <constraint firstItem="gZj-xR-TIz" firstAttribute="top" secondItem="0FT-zF-rgK" secondAttribute="bottom" id="ZUX-BF-fJZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0FT-zF-rgK" secondAttribute="trailing" constant="-8" id="ozB-8E-KZw"/>
+                            <constraint firstItem="0FT-zF-rgK" firstAttribute="top" secondItem="udv-vb-kHr" secondAttribute="topMargin" id="v9E-Ma-zCa"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="noteTextView" destination="0FT-zF-rgK" id="yq4-uf-dbo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fnu-i7-3K7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -124,4 +133,5 @@
     <resources>
         <image name="ic_cloud" width="24" height="24"/>
     </resources>
+    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
 </document>

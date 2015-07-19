@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KKMNotesViewController : UIViewController
+@interface KKMNotesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *previewSegmentControl;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
