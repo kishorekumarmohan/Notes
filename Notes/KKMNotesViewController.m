@@ -15,6 +15,8 @@
 
 @property (nonatomic, strong) KKMNotesDataManager *dataManager;
 @property (nonatomic, strong) NSMutableArray *notesArray;
+@property (nonatomic, strong) KKMNote *note;
+@property (nonatomic, assign) BOOL collapseDetailViewController;
 
 @end
 
@@ -23,7 +25,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self setupSplitViewController];
     [self setupDataManager];
+}
+
+- (void)setupSplitViewController
+{
+    self.splitViewController.delegate = self;
+    self.collapseDetailViewController = YES;
 }
 
 - (void)setupDataManager
@@ -57,11 +67,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    KKMEditNotesViewController *controller = (KKMEditNotesViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"KKMEditNotesViewController"];
-    controller.note = self.notesArray[indexPath.row];
-    [self showViewController:controller sender:self];
+    self.note = self.notesArray[indexPath.row];
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -84,4 +90,22 @@
     }
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"KKMEditNotesViewController"])
+    {
+        UINavigationController *navController = segue.destinationViewController;
+        KKMNotesViewController *controller = (KKMNotesViewController *)navController.topViewController;
+        controller.note = self.note;
+        controller.navigationItem.title = [NSString stringWithFormat:@"%@", self.note.modifiedDate];
+    }
+}
+
+
+#pragma mark - UISplitViewControllerDelegate
+
+-(BOOL)splitViewController:(UISplitViewController *)splitViewController collapseSecondaryViewController:(UIViewController *)secondaryViewController ontoPrimaryViewController:(UIViewController *)primaryViewController
+{
+    return self.collapseDetailViewController;
+}
 @end

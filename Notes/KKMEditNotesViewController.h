@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class KKMNote;
 
-@interface KKMEditNotesViewController : UIViewController
+@interface KKMEditNotesViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *noteTextView;
 @property (nonatomic, strong) KKMNote *note;

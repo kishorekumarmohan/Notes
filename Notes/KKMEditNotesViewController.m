@@ -27,10 +27,21 @@
 
 - (void)setup
 {
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:nil action:@selector(saveNote)];
-    
+    [self setupBarButtonItem];
     [self setupDataManager];
+    [self setupTextView];
+}
+
+- (void)setupBarButtonItem
+{
+    self.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+    self.navigationItem.leftItemsSupplementBackButton = true;
     
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:nil action:@selector(saveNote)];
+}
+
+- (void)setupTextView
+{
     [self.noteTextView becomeFirstResponder];
     self.noteTextView.text = self.note.notes;
 }
@@ -46,21 +57,24 @@
     KKMNote *note = [KKMNote new];
     note.notes = self.noteTextView.text;
     [self.dataManager upsertNote:note];
-    
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    KKMNotesViewController *controller = (KKMNotesViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"KKMNotesViewController"];
-    [self showViewController:controller sender:self];
 }
 
 
-/*
-#pragma mark - Navigation
+#pragma mark - UISplitViewControllerDelegate
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)splitViewController:(UISplitViewController *)svc willChangeToDisplayMode:(UISplitViewControllerDisplayMode)displayMode
+{
 }
-*/
+
+- (BOOL)splitViewController:(UISplitViewController *)splitViewController collapseSecondaryViewController:(UIViewController *)secondaryViewController ontoPrimaryViewController:(UIViewController *)primaryViewController
+{
+    UINavigationController *nc = (UINavigationController *)secondaryViewController;
+    KKMEditNotesViewController *controller = (KKMEditNotesViewController *)nc.topViewController;
+    if (controller.note) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
 
 @end
