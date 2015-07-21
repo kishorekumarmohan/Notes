@@ -30,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A55B41B1B5E04FC0049C36F /* KKMNoteSavedProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKMNoteSavedProtocol.h; sourceTree = "<group>"; };
 		2A98066F1B59C2EE00BF086C /* Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A9806731B59C2EE00BF086C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A9806741B59C2EE00BF086C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -69,6 +70,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A55B4191B5E04170049C36F /* DataManager & Model */ = {
+			isa = PBXGroup;
+			children = (
+				2A98069D1B59D07C00BF086C /* KKMNote.h */,
+				2A98069E1B59D07C00BF086C /* KKMNote.m */,
+				2A9806A01B59D13A00BF086C /* KKMNotesDataManager.h */,
+				2A9806A11B59D13A00BF086C /* KKMNotesDataManager.m */,
+			);
+			name = "DataManager & Model";
+			sourceTree = "<group>";
+		};
 		2A9806661B59C2EE00BF086C = {
 			isa = PBXGroup;
 			children = (
@@ -96,10 +108,8 @@
 				2A98067A1B59C2EE00BF086C /* KKMNotesViewController.m */,
 				2A98069A1B59CF8D00BF086C /* KKMEditNotesViewController.h */,
 				2A98069B1B59CF8E00BF086C /* KKMEditNotesViewController.m */,
-				2A98069D1B59D07C00BF086C /* KKMNote.h */,
-				2A98069E1B59D07C00BF086C /* KKMNote.m */,
-				2A9806A01B59D13A00BF086C /* KKMNotesDataManager.h */,
-				2A9806A11B59D13A00BF086C /* KKMNotesDataManager.m */,
+				2A55B41B1B5E04FC0049C36F /* KKMNoteSavedProtocol.h */,
+				2A55B4191B5E04170049C36F /* DataManager & Model */,
 				2A98067C1B59C2EE00BF086C /* Main.storyboard */,
 				2A98067F1B59C2EE00BF086C /* Images.xcassets */,
 				2A9806811B59C2EE00BF086C /* LaunchScreen.xib */,

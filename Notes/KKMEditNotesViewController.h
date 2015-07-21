@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KKMNoteSavedProtocol.h"
 @class KKMNote;
 
 @interface KKMEditNotesViewController : UIViewController <UISplitViewControllerDelegate>
@@ -17,5 +18,6 @@
 - (IBAction)saveNote:(id)sender;
 
 @property (nonatomic, strong) KKMNote *note;
+@property (nonatomic, weak) id<KKMNoteSavedProtocol> noteSavedDelegate;
 
 @end

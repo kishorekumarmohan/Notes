@@ -35,19 +35,17 @@
     });
 }
 
-- (void)fetchNoteForNoteID:(NSString *)noteID handler:(KKMNoteHandler) handler
-{
-    
-}
-
-- (void)upsertNote:(KKMNote *)note
+- (void)upsertNote:(KKMNote *)note handler:(KKMNoteSaveHandler) handler
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         note.modifiedDate = [NSDate new];
         note.noteID = [NSString stringWithFormat:@"Note%f", [NSDate timeIntervalSinceReferenceDate] * 1000];
         
         NSString *path = [self dataStorePathForFileName:note.noteID];
-        [NSKeyedArchiver archiveRootObject:note toFile:path];
+        BOOL result = [NSKeyedArchiver archiveRootObject:note toFile:path];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            handler(result);
+        });
     });
 }
 

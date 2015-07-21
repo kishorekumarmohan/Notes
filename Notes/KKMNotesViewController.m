@@ -10,8 +10,9 @@
 #import "KKMNotesDataManager.h"
 #import "KKMNote.h"
 #import "KKMEditNotesViewController.h"
+#import "KKMNoteSavedProtocol.h"
 
-@interface KKMNotesViewController ()
+@interface KKMNotesViewController() <KKMNoteSavedProtocol>
 
 @property (nonatomic, strong) KKMNotesDataManager *dataManager;
 @property (nonatomic, strong) NSMutableArray *notesArray;
@@ -27,10 +28,6 @@
     [super viewDidLoad];
     
     [self setupSplitViewController];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
     [self setupDataManager];
 }
 
@@ -64,6 +61,8 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"NOTE_CELL"];
     KKMNote *note = self.notesArray[indexPath.row];
     cell.textLabel.text = note.notes;
+    cell.textLabel.textColor = [UIColor darkGrayColor];
+    cell.textLabel.font = [UIFont systemFontOfSize:12.0f];
     return cell;
 }
 
@@ -101,6 +100,7 @@
 {
     UINavigationController *navController = segue.destinationViewController;
     KKMEditNotesViewController *controller = (KKMEditNotesViewController *)navController.topViewController;
+    controller.noteSavedDelegate = self;
 
     if([segue.identifier isEqualToString:@"KKMEditNotesViewController_Edit"])
     {
@@ -109,7 +109,10 @@
         [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
         [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
         NSString *title = [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:self.selectedNote.modifiedDate]];
-        controller.navigationItem.title = title;
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+        titleLabel.text = title;
+        titleLabel.font = [UIFont systemFontOfSize:10.0f];
+        controller.navigationItem.titleView = titleLabel;
     }
 }
 
@@ -120,4 +123,12 @@
 {
     return self.collapseDetailViewController;
 }
+
+#pragma mark - KKMNoteSavedProtocol
+-(void)noteSaved
+{
+    [self setupDataManager];
+    [self.tableView reloadData];
+}
+
 @end

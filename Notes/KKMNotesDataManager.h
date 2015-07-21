@@ -11,14 +11,13 @@
 
 typedef void (^KKMNotesHandler)(NSArray *results);
 typedef void (^KKMNoteHandler)(KKMNote *note);
+typedef void (^KKMNoteSaveHandler)(BOOL result);
 
 @interface KKMNotesDataManager : NSObject
 
 - (void)fetchNotesWithHandler:(KKMNotesHandler) handler;
 
-- (void)fetchNoteForNoteID:(NSString *)noteID handler:(KKMNoteHandler) handler;
-
-- (void)upsertNote:(KKMNote *)note;
+- (void)upsertNote:(KKMNote *)note handler:(KKMNoteSaveHandler) handler;
 
 - (void)deleteNote:(KKMNote *)note;
 

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Whf-Sl-teC">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Edit Notes View Controller-->
@@ -16,9 +17,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qhX-nM-7CY">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qhX-nM-7CY">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
@@ -28,6 +29,12 @@
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qhX-nM-7CY" firstAttribute="leading" secondItem="i4Y-BU-61P" secondAttribute="leadingMargin" constant="-16" id="DhA-KR-3YD"/>
+                            <constraint firstItem="Vxp-jN-njy" firstAttribute="top" secondItem="qhX-nM-7CY" secondAttribute="bottom" id="Mbt-Jq-OKA"/>
+                            <constraint firstItem="qhX-nM-7CY" firstAttribute="top" secondItem="i4Y-BU-61P" secondAttribute="topMargin" id="ht5-K1-Z9e"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qhX-nM-7CY" secondAttribute="trailing" constant="-16" id="n73-tD-mht"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vgX-Ss-zY5">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="G0x-Fy-G5t">
@@ -67,7 +74,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Notes" id="9Z7-BG-wZ1">
-                        <barButtonItem key="rightBarButtonItem" title="New" id="Rjx-DA-P91">
+                        <barButtonItem key="rightBarButtonItem" image="ic_note_add" id="Rjx-DA-P91">
                             <connections>
                                 <segue destination="WiU-VJ-2jU" kind="showDetail" identifier="KKMEditNotesViewController_New" id="wEG-yP-UfW"/>
                             </connections>
@@ -129,8 +136,10 @@
             <point key="canvasLocation" x="192" y="968"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_note_add" width="24" height="24"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="af0-IU-z07"/>
     </inferredMetricsTieBreakers>
-    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
 </document>

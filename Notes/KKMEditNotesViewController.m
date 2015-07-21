@@ -53,11 +53,16 @@
 #pragma mark - Action methods
 - (IBAction)saveNote:(id)sender
 {
+    [self removeSaveBarButtonItem];
+    
     KKMNote *note = [KKMNote new];
     note.notes = self.noteTextView.text;
-    [self.dataManager upsertNote:note];
+    __weak id weakSelf = self;
     
-    [self removeSaveBarButtonItem];
+    [self.dataManager upsertNote:note handler:^(BOOL result) {
+        KKMEditNotesViewController *strongSelf = weakSelf;
+        [strongSelf.noteSavedDelegate noteSaved];
+    }];
 }
 
 - (void)removeSaveBarButtonItem
@@ -82,9 +87,6 @@
 
 
 #pragma mark - UISplitViewControllerDelegate
-- (void)splitViewController:(UISplitViewController *)svc willChangeToDisplayMode:(UISplitViewControllerDisplayMode)displayMode
-{
-}
 
 - (BOOL)splitViewController:(UISplitViewController *)splitViewController collapseSecondaryViewController:(UIViewController *)secondaryViewController ontoPrimaryViewController:(UIViewController *)primaryViewController
 {
