@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong) KKMNotesDataManager *dataManager;
 @property (nonatomic, strong) NSMutableArray *notesArray;
-@property (nonatomic, strong) KKMNote *note;
+@property (nonatomic, strong) KKMNote *selectedNote;
 @property (nonatomic, assign) BOOL collapseDetailViewController;
 
 @end
@@ -27,6 +27,10 @@
     [super viewDidLoad];
     
     [self setupSplitViewController];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
     [self setupDataManager];
 }
 
@@ -67,7 +71,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    self.note = self.notesArray[indexPath.row];
+    self.selectedNote = self.notesArray[indexPath.row];
+    [self performSegueWithIdentifier:@"KKMEditNotesViewController_Edit" sender:self];
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -84,20 +89,27 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
+        self.selectedNote = nil;
         [self.dataManager deleteNote:self.notesArray[indexPath.row]];
         [self.notesArray removeObjectAtIndex:indexPath.row];
         [self.tableView reloadData];
     }
 }
 
+#pragma mark - UIView
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([segue.identifier isEqualToString:@"KKMEditNotesViewController"])
+    UINavigationController *navController = segue.destinationViewController;
+    KKMEditNotesViewController *controller = (KKMEditNotesViewController *)navController.topViewController;
+
+    if([segue.identifier isEqualToString:@"KKMEditNotesViewController_Edit"])
     {
-        UINavigationController *navController = segue.destinationViewController;
-        KKMNotesViewController *controller = (KKMNotesViewController *)navController.topViewController;
-        controller.note = self.note;
-        controller.navigationItem.title = [NSString stringWithFormat:@"%@", self.note.modifiedDate];
+        controller.note = self.selectedNote;
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+        NSString *title = [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:self.selectedNote.modifiedDate]];
+        controller.navigationItem.title = title;
     }
 }
 

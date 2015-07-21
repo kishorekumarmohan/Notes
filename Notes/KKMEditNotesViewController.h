@@ -12,6 +12,10 @@
 @interface KKMEditNotesViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *noteTextView;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *saveBarButtonItem;
+
+- (IBAction)saveNote:(id)sender;
+
 @property (nonatomic, strong) KKMNote *note;
 
 @end

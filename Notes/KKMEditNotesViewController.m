@@ -11,7 +11,7 @@
 #import "KKMNotesDataManager.h"
 #import "KKMNotesViewController.h"
 
-@interface KKMEditNotesViewController ()
+@interface KKMEditNotesViewController () <UITextViewDelegate>
 
 @property (nonatomic, strong) KKMNotesDataManager *dataManager;
 
@@ -36,8 +36,6 @@
 {
     self.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
     self.navigationItem.leftItemsSupplementBackButton = true;
-    
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:nil action:@selector(saveNote)];
 }
 
 - (void)setupTextView
@@ -52,16 +50,38 @@
         self.dataManager = [KKMNotesDataManager new];
 }
 
-- (void)saveNote
+#pragma mark - Action methods
+- (IBAction)saveNote:(id)sender
 {
     KKMNote *note = [KKMNote new];
     note.notes = self.noteTextView.text;
     [self.dataManager upsertNote:note];
+    
+    [self removeSaveBarButtonItem];
+}
+
+- (void)removeSaveBarButtonItem
+{
+    self.navigationItem.rightBarButtonItem = nil;
+    [self.noteTextView resignFirstResponder];
+}
+
+- (void)addSaveBarButtonItem
+{
+    self.navigationItem.rightBarButtonItem = self.saveBarButtonItem;
+}
+
+
+#pragma mark - UITextViewDelegate
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    [self becomeFirstResponder];
+    [self addSaveBarButtonItem];
 }
 
 
 #pragma mark - UISplitViewControllerDelegate
-
 - (void)splitViewController:(UISplitViewController *)svc willChangeToDisplayMode:(UISplitViewControllerDisplayMode)displayMode
 {
 }

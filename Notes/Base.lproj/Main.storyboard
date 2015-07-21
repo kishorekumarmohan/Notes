@@ -18,17 +18,27 @@
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qhX-nM-7CY">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="0UN-cE-Yew" id="FEF-fN-kOG"/>
+                                </connections>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="vgX-Ss-zY5"/>
+                    <navigationItem key="navigationItem" id="vgX-Ss-zY5">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="G0x-Fy-G5t">
+                            <connections>
+                                <action selector="saveNote:" destination="0UN-cE-Yew" id="cpr-jf-gaW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="noteTextView" destination="qhX-nM-7CY" id="41o-FD-xTA"/>
+                        <outlet property="saveBarButtonItem" destination="G0x-Fy-G5t" id="cEl-af-qTE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ef9-Kd-NnS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -49,9 +59,6 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Et1-BE-7ij" id="H9d-RK-kXK">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="WiU-VJ-2jU" kind="showDetail" identifier="KKMEditNotesViewController" id="690-PF-4dY"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -59,7 +66,16 @@
                             <outlet property="delegate" destination="D9T-r6-cDH" id="g3Z-eo-bUL"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Notes" id="9Z7-BG-wZ1"/>
+                    <navigationItem key="navigationItem" title="Notes" id="9Z7-BG-wZ1">
+                        <barButtonItem key="rightBarButtonItem" title="New" id="Rjx-DA-P91">
+                            <connections>
+                                <segue destination="WiU-VJ-2jU" kind="showDetail" identifier="KKMEditNotesViewController_New" id="wEG-yP-UfW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="WiU-VJ-2jU" kind="showDetail" identifier="KKMEditNotesViewController_Edit" id="af0-IU-z07"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4nj-in-7Rk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -114,7 +130,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="690-PF-4dY"/>
+        <segue reference="af0-IU-z07"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
 </document>
