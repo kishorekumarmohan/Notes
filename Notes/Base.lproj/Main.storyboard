@@ -66,6 +66,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Et1-BE-7ij" id="H9d-RK-kXK">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -140,6 +141,7 @@
         <image name="ic_note_add" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="af0-IU-z07"/>
+        <segue reference="und-gX-JZH"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

@@ -63,14 +63,19 @@
     cell.textLabel.text = note.notes;
     cell.textLabel.textColor = [UIColor darkGrayColor];
     cell.textLabel.font = [UIFont systemFontOfSize:12.0f];
+    cell.backgroundColor = [UIColor clearColor];
+    cell.contentView.backgroundColor = [UIColor clearColor];
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.tableView reloadData];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.selectedNote = self.notesArray[indexPath.row];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    cell.contentView.backgroundColor = [UIColor colorWithRed:1.0f green:0.5f blue:0.0f alpha:0.25f];
     [self performSegueWithIdentifier:@"KKMEditNotesViewController_Edit" sender:self];
 }
 
